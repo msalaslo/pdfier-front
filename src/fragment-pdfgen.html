@@ -1,0 +1,60 @@
+
+<!-- Call to Action Section -->
+<div class="pdf-gen-bar well ">
+	<div class="row">
+		<div ng-controller="pdfController as $ctrl">
+		
+		    <script type="text/ng-template" id="myModalContent.html">
+        		<div class="modal-header">
+            		<center><h3 class="modal-title" id="modal-title">Thank you for using PDFier service!</h3></center>
+        		</div>
+        		<div class="modal-body" id="modal-body">
+            		<center><strong>Generating accessible PDF<strong><img src="/images/processing.gif" width="25" height="25"></center>
+        		</div>
+        		<div class="modal-footer">
+            		<center><button class="btn btn-success" type="button" ng-click="$ctrl.ok()">OK</button></center>
+        		</div>
+    		</script>
+    		
+    		<script type="text/ng-template" id="errorModalContent.html">
+        		<div class="modal-header">
+            		<center><h3 class="modal-title" id="modal-title">Sorry...</h3></center>
+        		</div>
+        		<div class="modal-body" id="modal-body">
+            		<center><strong>Error generating PDF/UA<strong></center>
+        		</div>
+        		<div class="modal-footer">
+            		<center><button class="btn btn-success" type="button" ng-click="$ctrl.ok()">OK</button></center>
+        		</div>
+    		</script>
+    
+			<div class="container searchbar">
+				<div class="row">
+					<div class="col-md-10 col-md-push-1 col-sm-8 col-sm-push-2 text-center">						
+						<form class="form-horizontal">
+							<div class="row">
+								<div class="input-group">
+									<input class="form-control input-transparent" name="url"
+										value="http://www.randomwebsite.com" type="url" ng-model="url">
+									<!-- span class="input-group-btn"><a class="btn btn-danger" data-toggle="collapse" data-content="#advanced"
+										href="#advanced">Options</a-->
+									<span class="input-group-btn">
+										<button ng-click="$ctrl.open();downloadPdf();" class="btn btn-success">Save as PDF/UA</button>
+										<button ng-click="$ctrl.open();viewPdf();" class="hidden-xs btn btn-success">View as PDF/UA</button>
+									</span>
+								</div>
+							</div>
+							<div class="sbinfo">
+								Convert an accessible web page to PDF/UA - just enter the URL and <b>Save (or View in this window) as tagged PDF (PDF/UA)</b>!
+							</div>
+							<object ng-if="content"  data="{{PostDataResponse}}" type="application/pdf" class="pdf-container"></object>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- div class="col-md-4">
+                    <a class="btn btn-lg btn-default btn-block" href="index-pdfa.html">Go to PDF accessible generation</a>
+                </div-->
+	</div>
+</div>

@@ -1,0 +1,48 @@
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Save As PDF/UA Link
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a>
+                </li>
+                <li class="active">Save As PDF/UA Link</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+
+	<div class="row">
+		<div class="col-md-9">
+			<p>With a <a href="/pricing">service license</a> you can put a link on your website that lets vistors save your web pages as PDF with a single click. It literally takes only two minutes for you to implement and offers great flexibility and power! All you need to do is put the following link on your web pages.</p>
+			<div class="top-box hide"><div class="alert-info"></div></div><div class="top-box hide"><div class="alert-info"></div></div><div class="top-box hide"><div class="alert-info"></div></div><div class="top-box hide"><div class="alert-info"></div></div><pre data-original-code="<a href=&quot;http://pdfier.com/pdfier-app/saveaspdfua&quot;>Save this page as PDF/UA</a>" data-snippet-id="ext.faf5ee0ebeb053b6c2ea3f506860e98e" data-snippet-saved="false" data-codota-status="done">&lt;a href="http://pdfier.com/pdfier-app/saveaspdfua"&gt;Save this page as PDF&lt;/a&gt;</pre>
+			<p>You can also let your visitors download other pages of your website easily by using the <i>url</i> parameter.</p>
+			<div class="top-box hide"><div class="alert-info"></div></div><div class="top-box hide"><div class="alert-info"></div></div><div class="top-box hide"><div class="alert-info"></div></div><div class="top-box hide"><div class="alert-info"></div></div><pre data-original-code="<a href=&quot;http://pdfier.com/pdfier-app/saveaspdfua?url=http://pdfmyurl.com/faq&quot;>Download the FAQ page as PDF/UA</a>" data-snippet-id="ext.ece71fa40a20577cfd1bdf489b402531" data-snippet-saved="false" data-codota-status="done">&lt;a href="http://pdfier.com/pdfier-app/saveaspdfua?url=http://pdfmyurl.com/faq"&gt;Download the FAQ page as PDF&lt;/a&gt;</pre>
+			<p>You can control the layout of the PDF by adding parameters to the URL from the following table.</p>
+			<table class="table table-bordered table-striped table-condensed">
+				<thead><tr><th>Parameter</th><th>Description</th></tr></thead>
+				<tbody>
+				<tr><td>url</td><td>The page on your website, which you want to convert. If you don't specify this, then we convert the page that the link is on.<br>Note that you must <a href="http://www.w3schools.com/tags/ref_urlencode.asp" target="_blank">encode the URL</a> to make sure it's used correctly. <a href="http://meyerweb.com/eric/tools/dencoder/" target="_blank">This site</a> can help you do so.</td></tr>
+				<tr><td>filename</td><td>Set the filename for the PDF</td></tr>
+				<tr><td>title</td><td>Set the title for the PDF (this overwrites the default title retrieved from the HTML title page)</td></tr>
+				<tr><td>inline</td><td>Display the PDF inline in the browser instead of as popup to save</td></tr>
+				</tbody>
+			</table>
+			<h2>Examples</h2>
+			<p>Below are some example links that you could put on your web pages. You can see what they do by clicking on them.</p>
+			<p><a href="/pdfier-app/saveaspdfua?url=http%3A%2F%2Fwebaim.org%2Fservices" target="_self" >Download the webaim.org Services page as PDF/UA!</a></p>
+	
+			<p><a href="/pdfier-app/saveaspdfua?inline=true&amp;url=http%3A%2F%2Fwebaim.org%2Fservices" target="_self" >Show inline the webaim.org Services page as PDF/UA!</a></p>
+			
+			<p><a href="/pdfier-app/saveaspdfua?inline=true&amp;url=http%3A%2F%2Fwebaim.org%2Fservices" target="_blank" >Show inline in a new browser window the webaim.org Services page as PDF/UA!</a></p>
+			
+			<h2>Important usage instructions</h2>
+			<p>If you acquired a service license and you want to use this functionality, then you need to be aware of the following things:</p>
+			<ol>
+			<li><a name="REFERER"></a>When your visitors click the above link, We use the <i>HTTP_REFERER</i> parameter to determine where they came from.<br> If you're using HTTPs on your website then you should link to our secure website (i.e. https://pdfier.com/pdfier-app/saveaspdfua), otherwise the HTTP_REFERER doesn't get passed and we can NOT convert the webpage. Some browsers (most notably Internet Explorer) also do NOT pass the <i>HTTP_REFERER</i> when you use <em>window.open</em> or <em>target=_blank</em> on your save as PDF links.</li>
+			<li><a name="activate-your-domain"></a>After you <a href="/pricing">acquire the service license</a>, you need to set the domain(s) of your website(s) in our members area. This allows us to tie your subscription to the web pages that are being converted.</li> 
+			</ol>
+		</div>
+		
+		<ng-include src="'fragment-signup.html'"></ng-include>
+	</div>
