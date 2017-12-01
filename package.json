@@ -1,0 +1,26 @@
+{
+  "name": "pdfier-front",
+  "version": "1.0.0",
+  "description": "PDFier Site Front",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msalaslo/pdfier-front.git"
+  },
+  "keywords": [
+    "pdfier",
+    "pdf/ua",
+    "pdf",
+    "accessible",
+    "accessibility"
+  ],
+  "author": "Miguel Salas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/msalaslo/pdfier-front/issues"
+  },
+  "homepage": "https://github.com/msalaslo/pdfier-front#readme"
+}
