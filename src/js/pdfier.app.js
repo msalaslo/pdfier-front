@@ -1,7 +1,7 @@
 angular.module('pdfierApp', [ 'ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 
 .constant('appConfig', {
-	appPdfServicePath: 'https://pdfie-185817.appspot.com/pdf/saveaspdfua',
+	appPdfServicePath: 'https://pdfier-pdf-ua.appspot.com/pdf/saveaspdfua',
 	sameAppPdfServicePath: 'http://pdfier.com/pdfier-api/pdf/saveaspdfua',
 	localAppPdfServicePath: 'http://localhost:8080/pdf/saveaspdfua',
 	mailServiceUrl: 'https://pdfier-mail.appspot.com/mail/send'
@@ -152,7 +152,7 @@ angular.module('pdfierApp', [ 'ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstra
       
   $scope.sendMail = function () {
       var data = $.param({
-    	  name : $scope.name,
+    	  name : $scope.fullname,
 	      subject : $scope.subject,
 	      text : $scope.text,
 	      from : $scope.from
