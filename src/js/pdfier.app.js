@@ -3,7 +3,8 @@ angular.module('pdfierApp', [ 'ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstra
 .constant('appConfig', {
 	appPdfServicePath: 'https://pdfie-185817.appspot.com/pdf/saveaspdfua',
 	sameAppPdfServicePath: 'http://pdfier.com/pdfier-api/pdf/saveaspdfua',
-	localAppPdfServicePath: 'http://localhost:8080/pdf/saveaspdfua'
+	localAppPdfServicePath: 'http://localhost:8080/pdf/saveaspdfua',
+	mailServiceUrl: 'https://pdfier-mail.appspot.com/mail/send'
 })
 
 .config(function($routeProvider, $locationProvider, $httpProvider, $compileProvider) {
@@ -127,6 +128,45 @@ angular.module('pdfierApp', [ 'ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstra
 		      controllerAs: '$ctrl'	    
 		  });
 	})
+  };
+}])
+
+.controller('mailController', ['$http', '$scope', '$sce', '$uibModal', '$location', 'appConfig', function($http, $scope, $sce, $uibModal, $location, appConfig){
+  var $ctrl = this;
+  $ctrl.animationsEnabled = true;
+  var showProcessingBar = false;
+  var mailServiceUrl = appConfig.mailServiceUrl;
+
+  var modalInstance = null;
+  $ctrl.open = function (size) {
+	    modalInstance = $uibModal.open({
+	      animation: $ctrl.animationsEnabled,
+	      ariaLabelledBy: 'modal-title',
+	      ariaDescribedBy: 'modal-body',
+	      templateUrl: 'myModalContent.html',
+	      controller: 'ModalInstanceCtrl',
+	      controllerAs: '$ctrl',
+	      size: size
+	    });
+  };
+      
+  $scope.sendMail = function () {
+      var data = $.param({
+    	  name : $scope.name,
+	      subject : $scope.subject,
+	      text : $scope.text,
+	      from : $scope.from
+      });	
+      var config = {
+              headers : {
+                  'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+              },
+          	responseType :'application/json'
+         }
+	  $http.post(mailServiceUrl, data, config)
+	  .success(function (response) {
+	       modalInstance.close();
+	});
   };
 }])
   

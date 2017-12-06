@@ -33,12 +33,12 @@ const DEST_AW_FONTS = DEST + '/font-awesome';
 
 gulp.task('serve-src', serve({
 	root : [ 'src' ],
-	port : 81,
+	port : 80,
 	https : false
 }));
 gulp.task('serve-build', serve({
 	root : [ 'build' ],
-	port : 81,
+	port : 80,
 	https : false
 }));
 
