@@ -1,4 +1,7 @@
-angular.module('pdfierApp', [ 'ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap'])
+// Include a comment about why this seemingly unused module exists
+angular.module('templates', []);
+
+angular.module('pdfierApp', [ 'ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'templates'])
 
 .constant('appConfig', {
 	appPdfServicePath: 'https://pdfier-pdf-ua.appspot.com/pdf/saveaspdfua',

@@ -19,17 +19,20 @@ const ignore = require('gulp-ignore');
 const useref = require('gulp-useref');
 const gulpIf = require('gulp-if');
 const gulpSequence = require('gulp-sequence');
+const templateCache = require('gulp-angular-templatecache');
+const addStream = require('add-stream');
 
 
 const SRC = 'src';
 const DEST = 'build/';
-const DEST_CSS = DEST + "/css";
-const DEST_JS = DEST + "/js";
+const DEST_CSS = DEST + "css";
+const DEST_JS = DEST + "js";
 const DEST_HTML = DEST;
-const DEST_XML = DEST;
-const DEST_IMG = DEST + '/images';
-const DEST_FONTS = DEST + '/fonts';
-const DEST_AW_FONTS = DEST + '/font-awesome';
+const DEST_OTHERS = DEST;
+const DEST_IMG = DEST + 'images';
+const DEST_FONTS = DEST + 'fonts';
+const DEST_AW_FONTS = DEST + 'font-awesome';
+const DEST_TEMPLATES = DEST + 'templates';
 
 gulp.task('serve-src', serve({
 	root : [ 'src' ],
@@ -42,7 +45,7 @@ gulp.task('serve-build', serve({
 	https : false
 }));
 
-gulp.task('default', gulpSequence( 'html', 'xml-txt', 'images', 'fonts', 'font-awesome', 'js-css' ));
+gulp.task('default', gulpSequence('html', 'js-css', 'others', 'images', 'fonts', 'font-awesome'));
 
 gulp.task('stream', function() {
 	// Endless stream mode 
@@ -52,18 +55,36 @@ gulp.task('stream', function() {
 		.pipe(gulp.dest(DEST));
 });
 
+function prepareTemplates() {
+	return gulp.src(SRC + '/templates/**/*.html')
+		.pipe(templateCache())
+}
+
+gulp.task('prepare-templates', function () {
+	return gulp.src(SRC + '/templates/**/*.html')
+		.pipe(templateCache())
+		.pipe(gulp.dest(DEST_TEMPLATES));
+});
+
+gulp.task('concat-templates-with-js', function () {
+	return gulp.src(DEST_TEMPLATES, DEST_JS)
+		.pipe(concat('pdfier.app.1.js'))
+		.pipe(gulp.dest(DEST_JS));
+});
 
 gulp.task('js-css', function() {
 	return gulp.src(SRC + '/index.html')
-		.pipe(debug({
-			title : 'ficheros donde buscamos los JS y CSS a concatenar (minificar):'
-		}))
 		.pipe(cleanDest(DEST_JS))
 		.pipe(cleanDest(DEST_CSS))
 		.pipe(useref())
+		.pipe(debug({
+			title : 'ficheros encontrados en useref:'
+		}))
+		
 		.pipe(gulpIf('*.app.js', uglify()))
+		.pipe(addStream.obj(prepareTemplates))
+		.pipe(gulpIf('*.js', concat('/js/pdfier.min.js')))
 		.pipe(gulpIf('*.css', minifyCSS()))
-//		.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
 		.pipe(gulp.dest(DEST));
 });
 
@@ -77,11 +98,10 @@ gulp.task('html', function() {
 		.pipe(gulp.dest(DEST_HTML))
 });
 
-
-gulp.task('xml-txt', function() {
-	return gulp.src([ SRC + '/*.xml', SRC + '/*.txt', SRC + '/.htaccess' ])
-		.pipe(cleanDest(DEST_XML))
-		.pipe(gulp.dest(DEST_XML))
+gulp.task('others', function() {
+	return gulp.src([ SRC + '/*.xml', SRC + '/*.txt', SRC + '/.htaccess', SRC + '/favicon.ico' ])
+		.pipe(cleanDest(DEST_OTHERS))
+		.pipe(gulp.dest(DEST_OTHERS))
 });
 
 
